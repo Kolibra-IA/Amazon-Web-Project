@@ -59,7 +59,10 @@ export function updateCartQuantity() {
   });
 
   document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
+
+  return cartQuantity;
 }
+console.log(document.querySelector(".js-products-grid"));
 
 document.querySelector(".js-products-grid").innerHTML = productHTML;
 document.querySelectorAll(".js-add-to-cart").forEach((button) => {
