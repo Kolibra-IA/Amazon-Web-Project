@@ -96,8 +96,11 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
       `.js-cart-item-container-${productId}`,
     );
     container.remove();
+    updateCartQuantity();
   });
 });
-
-document.querySelector(".js-checkout-header-middle-section").innerHTML =
-  `Checkout (<a class="return-to-home-link js-return-to-home-link" href="amazon.html">${updateCartQuantity()} items</a>)`;
+function updateCartQuantity() {
+  document.querySelector(".js-checkout-header-middle-section").innerHTML =
+    `Checkout (<a class="return-to-home-link js-return-to-home-link" href="amazon.html">${updateCartQuantity()} items</a>)`;
+}
+updateCartQuantity();
