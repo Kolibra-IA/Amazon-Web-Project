@@ -3,11 +3,16 @@ export let cart = JSON.parse(localStorage.getItem("cart")) || [
   { productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d", quantity: 1 },
 ];
 
-export function updateCartQuantity() {
+function calculateCartQuantity() {
   let cartQuantity = 0;
   cart.forEach((item) => {
     cartQuantity += item.quantity;
   });
+  return cartQuantity;
+}
+
+export function updateCartQuantity() {
+  const cartQuantity = calculateCartQuantity();
 
   const cartQuanty = document.querySelector(".js-cart-quantity");
   if (cartQuanty) {
