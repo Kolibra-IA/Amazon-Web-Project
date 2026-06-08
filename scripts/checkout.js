@@ -34,8 +34,8 @@ cart.forEach((cartItem) => {
                 </div>
                 <div class="product-price">${formatCurrency(matchingProduct.priceCents)}</div>
                 <div class="product-quantity">
-                  <span> Quantity: <span class="quantity-label">${cartItem.quantity}</span> </span>
-                  <span class="update-quantity-link link-primary">
+                  <span> Quantity: <span class="quantity-label js-quantity-label-${matchingProduct.id}">${cartItem.quantity}</span> </span>
+                  <span class="update-quantity-link link-primary js-update-quantity-link" data-product-id= "${matchingProduct.id}">
                     Update
                   </span>
                   <span class="delete-quantity-link link-primary js-delete-link" data-product-id = ${matchingProduct.id}>
@@ -88,8 +88,6 @@ cart.forEach((cartItem) => {
     `;
 });
 
-console.log(cartSummaryHTML);
-
 document.querySelector(".js-order-summary").innerHTML = cartSummaryHTML;
 
 document.querySelectorAll(".js-delete-link").forEach((link) => {
@@ -110,3 +108,24 @@ function updateCartQuantity() {
 }
 
 updateCartQuantity();
+
+document.querySelectorAll(".js-update-quantity-link").forEach((link) => {
+  link.addEventListener("click", () => {
+    /*
+    const productId = link.dataset.productId;
+
+    const quantityLink = document.querySelector(
+      `.js-quantity-label-${productId}`,
+    );
+
+    if (link.textContent.trim() === "Update") {
+      link.textContent = "Save";
+      const quantity = quantityLink.textContent;
+      quantityLink.innerHTML = `<input type='text' value ='${quantity}'>`;
+    } else if (link.textContent.trim() === "Save") {
+      link.textContent = "Update";
+      const quantity = quantityLink.querySelector("input").value;
+      quantityLink.innerHTML = quantity;
+    } */
+  });
+});
