@@ -111,9 +111,9 @@ updateCartQuantity();
 
 document.querySelectorAll(".js-update-quantity-link").forEach((link) => {
   link.addEventListener("click", () => {
-    /*
     const productId = link.dataset.productId;
-
+    console.log(productId);
+    /*
     const quantityLink = document.querySelector(
       `.js-quantity-label-${productId}`,
     );
