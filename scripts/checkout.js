@@ -113,6 +113,7 @@ document.querySelectorAll(".js-update-quantity-link").forEach((link) => {
   link.addEventListener("click", () => {
     const productId = link.dataset.productId;
     console.log(productId);
+
     /*
     const quantityLink = document.querySelector(
       `.js-quantity-label-${productId}`,
@@ -121,11 +122,12 @@ document.querySelectorAll(".js-update-quantity-link").forEach((link) => {
     if (link.textContent.trim() === "Update") {
       link.textContent = "Save";
       const quantity = quantityLink.textContent;
-      quantityLink.innerHTML = `<input type='text' value ='${quantity}'>`;
+      quantityLink.innerHTML = `<input type='text' value ='${quantity}' class = 'quantity-input'>`;
+      quantityLink.querySelector("input").focus();
     } else if (link.textContent.trim() === "Save") {
       link.textContent = "Update";
       const quantity = quantityLink.querySelector("input").value;
       quantityLink.innerHTML = quantity;
-    } */
+    }*/
   });
 });
