@@ -120,12 +120,9 @@ document.querySelectorAll(".js-update-quantity-link").forEach((link) => {
       .querySelector(`.js-cart-item-container-${productId}`)
       .classList.add("is-editing-quantity");
 
-    /*
     link.style.display = "none";
     document.querySelector(`.js-quantity-label-${productId}`).style.display =
       "none";
-
-      */
 
     /*
     const quantityLink = document.querySelector(
