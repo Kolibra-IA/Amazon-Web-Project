@@ -213,3 +213,8 @@
 .quantity-input {
   width: 30px;
 }
+
+.save-quantity-link,
+.quantity-input {
+  display: none;
+}
