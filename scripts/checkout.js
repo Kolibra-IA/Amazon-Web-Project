@@ -35,10 +35,10 @@ cart.forEach((cartItem) => {
                 <div class="product-price">${formatCurrency(matchingProduct.priceCents)}</div>
                 <div class="product-quantity">
                   <span> Quantity: <span class="quantity-label js-quantity-label-${matchingProduct.id}">${cartItem.quantity}</span> </span>
-                  <span class="update-quantity-link link-primary js-update-quantity-link" data-product-id= "${matchingProduct.id}">
+                  <span class="update-quantity-link link-primary js-update-quantity-link js-update-quantity-link-${matchingProduct.id}" data-product-id= "${matchingProduct.id}">
                     Update
                   </span>
-                  <input class='quantity-input'>
+                  <input class='quantity-input js-quantity-input-${matchingProduct.id}'>
                   <span class='save-quantity-link js-save-quantity-link link-primary' data-product-id='${matchingProduct.id}'>Save</span>
                   <span class="delete-quantity-link link-primary js-delete-link" data-product-id = ${matchingProduct.id}>
                     Delete
@@ -146,5 +146,26 @@ document.querySelectorAll(".js-update-quantity-link").forEach((link) => {
       });
     }
     */
+  });
+});
+
+document.querySelectorAll(".js-save-quantity-link").forEach((save) => {
+  save.addEventListener("click", () => {
+    const productId = save.dataset.productId;
+    const inputValue = Number(
+      document.querySelector(`.js-quantity-input-${productId}`).value,
+    );
+
+    document
+      .querySelector(`.js-cart-item-container-${productId}`)
+      .classList.remove("is-editing-quantity");
+
+    document.querySelector(`.js-quantity-label-${productId}`).textContent =
+      inputValue;
+    document.querySelector(`.js-quantity-label-${productId}`).style.display =
+      "initial";
+    document.querySelector(
+      `.js-update-quantity-link-${productId}`,
+    ).style.display = "initial";
   });
 });
