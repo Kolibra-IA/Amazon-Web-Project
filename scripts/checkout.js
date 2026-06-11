@@ -2,6 +2,7 @@ import {
   cart,
   removeFromCart,
   updateCartQuantity as updateCartQuantityCheckout,
+  updateQuantity,
 } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
@@ -167,5 +168,7 @@ document.querySelectorAll(".js-save-quantity-link").forEach((save) => {
     document.querySelector(
       `.js-update-quantity-link-${productId}`,
     ).style.display = "initial";
+    updateQuantity(productId, inputValue);
+    console.log(cart);
   });
 });
