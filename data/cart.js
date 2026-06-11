@@ -60,3 +60,29 @@ export function updateQuantity(productId, newQuantity) {
     }
   });
 }
+
+export function saveFunctionality(productId) {
+  const inputValue = Number(
+    document.querySelector(`.js-quantity-input-${productId}`).value,
+  );
+  if (inputValue > 0 && inputValue < 1000) {
+    document
+      .querySelector(`.js-cart-item-container-${productId}`)
+      .classList.remove("is-editing-quantity");
+
+    document.querySelector(`.js-quantity-label-${productId}`).textContent =
+      inputValue;
+    document.querySelector(`.js-quantity-label-${productId}`).style.display =
+      "initial";
+    document.querySelector(
+      `.js-update-quantity-link-${productId}`,
+    ).style.display = "initial";
+    updateQuantity(productId, inputValue);
+    console.log(cart);
+    updateCartQuantity();
+  } else {
+    document.querySelector(`.js-quantity-input-${productId}`).style.border =
+      "red 1px solid";
+    document.querySelector(`.js-quantity-input-${productId}`).focus();
+  }
+}

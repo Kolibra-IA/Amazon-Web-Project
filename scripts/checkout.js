@@ -3,6 +3,7 @@ import {
   removeFromCart,
   updateCartQuantity as updateCartQuantityCheckout,
   updateQuantity,
+  saveFunctionality,
 } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
@@ -115,7 +116,6 @@ updateCartQuantity();
 document.querySelectorAll(".js-update-quantity-link").forEach((link) => {
   link.addEventListener("click", () => {
     const productId = link.dataset.productId;
-    console.log(productId);
 
     document
       .querySelector(`.js-cart-item-container-${productId}`)
@@ -153,23 +153,20 @@ document.querySelectorAll(".js-update-quantity-link").forEach((link) => {
 document.querySelectorAll(".js-save-quantity-link").forEach((save) => {
   save.addEventListener("click", () => {
     const productId = save.dataset.productId;
-    const inputValue = Number(
-      document.querySelector(`.js-quantity-input-${productId}`).value,
-    );
-
-    document
-      .querySelector(`.js-cart-item-container-${productId}`)
-      .classList.remove("is-editing-quantity");
-
-    document.querySelector(`.js-quantity-label-${productId}`).textContent =
-      inputValue;
-    document.querySelector(`.js-quantity-label-${productId}`).style.display =
-      "initial";
-    document.querySelector(
-      `.js-update-quantity-link-${productId}`,
-    ).style.display = "initial";
-    updateQuantity(productId, inputValue);
-    console.log(cart);
-    updateCartQuantity();
+    saveFunctionality(productId);
   });
+});
+
+document.querySelector("body").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    document.querySelectorAll(".js-save-quantity-link").forEach((save) => {
+      const productId = save.dataset.productId;
+      const inputValue = Number(
+        document.querySelector(`.js-quantity-input-${productId}`).value,
+      );
+      if (inputValue) {
+        saveFunctionality(productId);
+      }
+    });
+  }
 });
