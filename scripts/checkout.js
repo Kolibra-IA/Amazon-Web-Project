@@ -164,14 +164,9 @@ document.querySelector("body").addEventListener("keydown", (e) => {
       const inputValue = Number(
         document.querySelector(`.js-quantity-input-${productId}`).value,
       );
-      console.log(
-        document.querySelector(`.js-quantity-input-${productId}`).style.display,
-      );
-      if (
-        document
-          .querySelector(`.js-quantity-input-${productId}`)
-          .style.display.trim() === "initial"
-      ) {
+      const inputEl = document.querySelector(`.js-quantity-input-${productId}`);
+
+      if (getComputedStyle(inputEl).display.trim() !== "none") {
         saveFunctionality(productId);
       }
     });

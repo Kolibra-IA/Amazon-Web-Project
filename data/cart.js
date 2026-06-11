@@ -78,7 +78,7 @@ export function saveFunctionality(productId) {
       `.js-update-quantity-link-${productId}`,
     ).style.display = "initial";
     updateQuantity(productId, inputValue);
-    console.log(cart);
+
     updateCartQuantity();
   } else {
     document.querySelector(`.js-quantity-input-${productId}`).style.border =
