@@ -170,5 +170,6 @@ document.querySelectorAll(".js-save-quantity-link").forEach((save) => {
     ).style.display = "initial";
     updateQuantity(productId, inputValue);
     console.log(cart);
+    updateCartQuantity();
   });
 });
