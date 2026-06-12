@@ -78,8 +78,8 @@ export function saveFunctionality(productId) {
       `.js-update-quantity-link-${productId}`,
     ).style.display = "initial";
     updateQuantity(productId, inputValue);
-
     updateCartQuantity();
+    saveToStorage();
   } else {
     document.querySelector(`.js-quantity-input-${productId}`).style.border =
       "red 1px solid";
