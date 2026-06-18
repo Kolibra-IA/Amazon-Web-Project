@@ -11,9 +11,6 @@ export let cart = JSON.parse(localStorage.getItem("cart")) || [
   },
 ];
 
-localStorage.removeItem("cart");
-localStorage.setItem("cart", JSON.stringify(cart));
-
 function calculateCartQuantity() {
   let cartQuantity = 0;
   cart.forEach((item) => {
