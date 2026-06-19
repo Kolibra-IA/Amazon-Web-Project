@@ -72,11 +72,13 @@ function deliveryOption(matchingProduct) {
       deliveryOption.priceCents > 0
         ? `$${formatCurrency(deliveryOption.priceCents)} -`
         : "FREE";
+    let isChecked =
+      matchingProduct.deliveryOptionId === deliveryOption.id ? "checked" : "";
     html += `<div class="delivery-option">
       <input
         type="radio"
         class="delivery-option-input"
-        name="delivery-option-${matchingProduct.id}"
+        name="delivery-option-${matchingProduct.id}"  ${isChecked}
       />
       <div>
         <div class="delivery-option-date">${dateString}</div>
