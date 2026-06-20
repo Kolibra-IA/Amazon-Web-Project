@@ -24,7 +24,6 @@ cart.forEach((cartItem) => {
   });
 
   let clearDate;
-
   deliveryOptions.forEach((deliveryOption) => {
     if (cartItem.deliveryOptionId === deliveryOption.id) {
       clearDate = `${dayjs().add(deliveryOption.deliveryDays, "days").format("dddd, MMMM D")}`;
@@ -33,7 +32,7 @@ cart.forEach((cartItem) => {
 
   cartSummaryHTML += `
         <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
-            <div class="delivery-date">${clearDate}</div>
+            <div class="delivery-date">Delivery Date: ${clearDate}</div>
 
             <div class="cart-item-details-grid">
               <img
@@ -74,16 +73,15 @@ function deliveryOption(cartItem) {
   let html = "";
   const today = dayjs();
   deliveryOptions.forEach((deliveryOption) => {
-    const deliveryDate = today.add(deliveryOption.deliveryDays, "days");
-    const dateString = deliveryDate.format("dddd, MMMM D");
+    const dateString = today
+      .add(deliveryOption.deliveryDays, "days")
+      .format("dddd, MMMM D");
     const priceString =
       deliveryOption.priceCents > 0
         ? `$${formatCurrency(deliveryOption.priceCents)} -`
         : "FREE";
     let isChecked =
       cartItem.deliveryOptionId === deliveryOption.id ? "checked" : "";
-    console.log(cartItem.deliveryOptionId, deliveryOption.id);
-    console.log(isChecked);
     html += `<div class="delivery-option">
       <input
         type="radio"
