@@ -23,9 +23,17 @@ cart.forEach((cartItem) => {
     }
   });
 
+  let clearDate;
+
+  deliveryOptions.forEach((deliveryOption) => {
+    if (cartItem.deliveryOptionId === deliveryOption.id) {
+      clearDate = `${dayjs().add(deliveryOption.deliveryDays, "days").format("dddd, MMMM D")}`;
+    }
+  });
+
   cartSummaryHTML += `
         <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
-            <div class="delivery-date">Delivery date: Tuesday, June 21</div>
+            <div class="delivery-date">${clearDate}</div>
 
             <div class="cart-item-details-grid">
               <img
@@ -55,17 +63,17 @@ cart.forEach((cartItem) => {
                 <div class="delivery-options-title">
                   Choose a delivery option:
                 </div>
-                ${deliveryOption(matchingProduct)}
+                ${deliveryOption(cartItem)}
               </div>
             </div>
         </div>
     `;
 });
 
-function deliveryOption(matchingProduct) {
+function deliveryOption(cartItem) {
   let html = "";
+  const today = dayjs();
   deliveryOptions.forEach((deliveryOption) => {
-    const today = dayjs();
     const deliveryDate = today.add(deliveryOption.deliveryDays, "days");
     const dateString = deliveryDate.format("dddd, MMMM D");
     const priceString =
@@ -73,12 +81,14 @@ function deliveryOption(matchingProduct) {
         ? `$${formatCurrency(deliveryOption.priceCents)} -`
         : "FREE";
     let isChecked =
-      matchingProduct.deliveryOptionId === deliveryOption.id ? "checked" : "";
+      cartItem.deliveryOptionId === deliveryOption.id ? "checked" : "";
+    console.log(cartItem.deliveryOptionId, deliveryOption.id);
+    console.log(isChecked);
     html += `<div class="delivery-option">
       <input
         type="radio"
         class="delivery-option-input"
-        name="delivery-option-${matchingProduct.id}"  ${isChecked}
+        name="delivery-option-${cartItem.productId}"  ${isChecked}
       />
       <div>
         <div class="delivery-option-date">${dateString}</div>
@@ -86,6 +96,7 @@ function deliveryOption(matchingProduct) {
       </div>
     </div>`;
   });
+
   return html;
 }
 
