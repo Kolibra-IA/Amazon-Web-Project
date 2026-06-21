@@ -94,3 +94,15 @@ export function saveFunctionality(productId) {
     document.querySelector(`.js-quantity-input-${productId}`).focus();
   }
 }
+
+export function updateDeliveryOption(productId, deliveryOptionId) {
+  let matchingItem;
+
+  cart.forEach((cartItem) => {
+    if (productId === cartItem.productId) {
+      matchingItem = cartItem;
+    }
+  });
+  matchingItem.deliveryOptionId = deliveryOptionId;
+  saveToStorage(cart);
+}

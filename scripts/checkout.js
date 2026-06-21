@@ -4,6 +4,7 @@ import {
   updateCartQuantity as updateCartQuantityCheckout,
   updateQuantity,
   saveFunctionality,
+  updateDeliveryOption,
 } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
@@ -74,7 +75,7 @@ function deliveryOption(matchingProduct) {
         : "FREE";
     let isChecked =
       matchingProduct.deliveryOptionId === deliveryOption.id ? "checked" : "";
-    html += `<div class="delivery-option">
+    html += `<div class="delivery-option js-delivery-option" data-product-id=${matchingProduct.productId} data-delivery-option-id= ${matchingProduct.deliveryOptionId}>
       <input
         type="radio"
         class="delivery-option-input"
@@ -168,4 +169,11 @@ document.querySelector("body").addEventListener("keydown", (e) => {
       }
     });
   }
+});
+
+document.querySelectorAll(".js-delivery-option").forEach((element) => {
+  const { productId, deliveryOptionId } = element.dataset;
+  element.addEventListener("click", () => {
+    updateDeliveryOption(productId, deliveryOptionId);
+  });
 });
