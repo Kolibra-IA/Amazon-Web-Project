@@ -24,9 +24,20 @@ cart.forEach((cartItem) => {
     }
   });
 
+  let dateString;
+
+  deliveryOptions.forEach((deliveryOption) => {
+    if (deliveryOption.id === cartItem.deliveryOptionId) {
+      dateString = dayjs()
+        .add(deliveryOption.deliveryDays, "days")
+        .format("dddd, MMMM D");
+      console.log(dateString, typeof deliveryOption.deliveryDays);
+    }
+  });
+
   cartSummaryHTML += `
         <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
-            <div class="delivery-date">Delivery date: Tuesday, June 21</div>
+            <div class="delivery-date">Delivery date: ${dateString}</div>
 
             <div class="cart-item-details-grid">
               <img
@@ -56,7 +67,7 @@ cart.forEach((cartItem) => {
                 <div class="delivery-options-title">
                   Choose a delivery option:
                 </div>
-                ${deliveryOption(matchingProduct)}
+                ${deliveryOption(cartItem)}
               </div>
             </div>
         </div>
@@ -75,11 +86,12 @@ function deliveryOption(matchingProduct) {
         : "FREE";
     let isChecked =
       matchingProduct.deliveryOptionId === deliveryOption.id ? "checked" : "";
-    html += `<div class="delivery-option js-delivery-option" data-product-id=${matchingProduct.productId} data-delivery-option-id= ${matchingProduct.deliveryOptionId}>
+    console.log(matchingProduct.deliveryOptionId, deliveryOption.id, isChecked);
+    html += `<div class="delivery-option js-delivery-option" data-product-id=${matchingProduct.productId} data-delivery-option-id=${deliveryOption.id}>
       <input
         type="radio"
         class="delivery-option-input"
-        name="delivery-option-${matchingProduct.id}"  ${isChecked}
+        name="delivery-option-${matchingProduct.productId}"  ${isChecked}
       />
       <div>
         <div class="delivery-option-date">${dateString}</div>
@@ -175,5 +187,6 @@ document.querySelectorAll(".js-delivery-option").forEach((element) => {
   const { productId, deliveryOptionId } = element.dataset;
   element.addEventListener("click", () => {
     updateDeliveryOption(productId, deliveryOptionId);
+    console.log(productId, deliveryOptionId);
   });
 });
