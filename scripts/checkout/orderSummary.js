@@ -6,7 +6,7 @@ import {
   saveFunctionality,
   updateDeliveryOption,
 } from "../../data/cart.js";
-import { products } from "../../data/products.js";
+import { getProduct, products } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 import { hello } from "https://unpkg.com/supersimpledev@1.0.1/hello.esm.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
@@ -17,13 +17,7 @@ export function renderOrderSummary() {
 
   cart.forEach((cartItem) => {
     const productId = cartItem.productId;
-    let matchingProduct;
-
-    products.forEach((product) => {
-      if (product.id === productId) {
-        matchingProduct = product;
-      }
-    });
+    const matchingPorudct = getProduct(productId);
 
     let dateString;
 
