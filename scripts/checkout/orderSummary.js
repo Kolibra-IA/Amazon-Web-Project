@@ -10,26 +10,25 @@ import { getProduct, products } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 import { hello } from "https://unpkg.com/supersimpledev@1.0.1/hello.esm.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
-import { deliveryOptions } from "../../data/deliveryOptions.js";
+import {
+  deliveryOptions,
+  getDeliveryOption,
+} from "../../data/deliveryOptions.js";
 
 export function renderOrderSummary() {
   let cartSummaryHTML = "";
 
   cart.forEach((cartItem) => {
     const productId = cartItem.productId;
-    const matchingPorudct = getProduct(productId);
+    const matchingProduct = getProduct(productId);
 
     let dateString;
+    let deliveryOption = getDeliveryOption(cartItem);
+    console.log(deliveryOption);
 
-    deliveryOptions.forEach((deliveryOption) => {
-      if (deliveryOption.id === cartItem.deliveryOptionId) {
-        dateString = dayjs()
-          .add(deliveryOption.deliveryDays, "days")
-          .format("dddd, MMMM D");
-        console.log(dateString, typeof deliveryOption.deliveryDays);
-      }
-    });
-
+    dateString = dayjs()
+      .add(deliveryOption.deliveryDays, "days")
+      .format("dddd, MMMM D");
     cartSummaryHTML += `
         <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date">Delivery date: ${dateString}</div>
@@ -62,14 +61,14 @@ export function renderOrderSummary() {
                 <div class="delivery-options-title">
                   Choose a delivery option:
                 </div>
-                ${deliveryOption(cartItem)}
+                ${deliveryOptionf(cartItem)}
               </div>
             </div>
         </div>
     `;
   });
 
-  function deliveryOption(matchingProduct) {
+  function deliveryOptionf(matchingProduct) {
     let html = "";
     deliveryOptions.forEach((deliveryOption) => {
       const today = dayjs();

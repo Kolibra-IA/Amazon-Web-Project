@@ -1,12 +1,16 @@
 import { cart } from "../../data/cart.js";
 import { getProduct } from "../../data/products.js";
-import { deliveryOptions } from "../../data/deliveryOptions.js";
-s;
+import { getDeliveryOption } from "../../data/deliveryOptions.js";
 
-let totalPrice = 0;
-cart.forEach((cartItem, index) => {
-  let matchingProduct = getProduct(cartItem.productId);
-  totalPrice += (matchingProduct.priceCents / 100) * cartItem.quantity;
-});
-
-totalPrice = totalPrice.toFixed(2);
+export function renderPaymentSummary() {
+  let productPriceCent = 0;
+  let shippingPriceCent = 0;
+  cart.forEach((cartItem) => {
+    let matchingProduct = getProduct(cartItem.productId);
+    productPriceCent += matchingProduct.priceCents * cartItem.quantity;
+    deliveryOption = getDeliveryOption(cartItem);
+    shippingPriceCent += deliveryOption.priceCents * cartItem.quantity;
+  });
+  productPriceCent = productPriceCent / 100;
+  shippingPriceCent = shippingPriceCent / 100;
+}
