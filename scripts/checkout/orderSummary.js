@@ -23,7 +23,7 @@ export function renderOrderSummary() {
     const matchingProduct = getProduct(productId);
 
     let dateString;
-    let deliveryOption = getDeliveryOption(cartItem);
+    const deliveryOption = getDeliveryOption(cartItem);
     console.log(deliveryOption);
 
     dateString = dayjs()
