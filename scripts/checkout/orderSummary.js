@@ -163,6 +163,7 @@ export function renderOrderSummary() {
     save.addEventListener("click", () => {
       const productId = save.dataset.productId;
       saveFunctionality(productId);
+      renderPaymentSummary();
     });
   });
 
@@ -179,6 +180,7 @@ export function renderOrderSummary() {
 
         if (getComputedStyle(inputEl).display.trim() !== "none") {
           saveFunctionality(productId);
+          renderPaymentSummary();
         }
       });
     }

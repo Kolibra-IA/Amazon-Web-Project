@@ -1,4 +1,4 @@
-localStorage.removeItem("cart");
+// localStorage.removeItem("cart");
 
 export let cart = JSON.parse(localStorage.getItem("cart")) || [
   {
@@ -89,7 +89,7 @@ export function saveFunctionality(productId) {
     ).style.display = "initial";
     updateQuantity(productId, inputValue);
     updateCartQuantity();
-    saveToStorage();
+    saveToStorage(cart);
   } else {
     document.querySelector(`.js-quantity-input-${productId}`).style.border =
       "red 1px solid";
