@@ -76,11 +76,7 @@ export function renderOrderSummary() {
           : "FREE";
       let isChecked =
         matchingProduct.deliveryOptionId === deliveryOption.id ? "checked" : "";
-      console.log(
-        matchingProduct.deliveryOptionId,
-        deliveryOption.id,
-        isChecked,
-      );
+
       html += `<div class="delivery-option js-delivery-option" data-product-id=${matchingProduct.productId} data-delivery-option-id=${deliveryOption.id}>
       <input
         type="radio"

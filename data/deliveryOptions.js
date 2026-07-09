@@ -17,8 +17,10 @@ export function getDeliveryOption(cartItem) {
 
 export function calculateDeliveryDate(deliveryOption) {
   let dateString;
-  dateString = dayjs()
-    .add(deliveryOption.deliveryDays, "days")
-    .format("dddd, MMMM D");
+  dateString = dayjs().add(deliveryOption.deliveryDays, "days");
+  if (dateString.format("d") === "0" || dateString.format("d") === "6") {
+    dateString = dateString.add(2, "days");
+  }
+  dateString = dateString.format("dddd, MMMM D");
   return dateString;
 }
