@@ -11,7 +11,7 @@ export let cart = JSON.parse(localStorage.getItem("cart")) || [
   },
 ];
 
-function calculateCartQuantity() {
+export function calculateCartQuantity() {
   let cartQuantity = 0;
   cart.forEach((item) => {
     cartQuantity += item.quantity;
@@ -19,7 +19,7 @@ function calculateCartQuantity() {
   return cartQuantity;
 }
 
-export function updateCartQuantity() {
+/* export function updateCartQuantity() {
   const cartQuantity = calculateCartQuantity();
 
   const cartQuanty = document.querySelector(".js-cart-quantity");
@@ -27,7 +27,7 @@ export function updateCartQuantity() {
     cartQuanty.innerHTML = cartQuantity;
   }
   return cartQuantity;
-}
+}*/
 
 export function addToCart(productId) {
   let matchingItem;
@@ -86,7 +86,7 @@ export function saveFunctionality(productId) {
       `.js-update-quantity-link-${productId}`,
     ).style.display = "initial";
     updateQuantity(productId, inputValue);
-    updateCartQuantity();
+    //updateCartQuantity();
     saveToStorage(cart);
   } else {
     document.querySelector(`.js-quantity-input-${productId}`).style.border =
