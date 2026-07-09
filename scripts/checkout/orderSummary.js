@@ -1,7 +1,7 @@
 import {
   cart,
   removeFromCart,
-  updateCartQuantity as updateCartQuantityCheckout,
+  //updateCartQuantity as updateCartQuantityCheckout,
   updateQuantity,
   saveFunctionality,
   updateDeliveryOption,
@@ -15,6 +15,7 @@ import {
   getDeliveryOption,
 } from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
+import { renderCheckoutHeader } from "./checkoutHeader.js";
 
 export function renderOrderSummary() {
   let cartSummaryHTML = "";
@@ -113,17 +114,12 @@ export function renderOrderSummary() {
       //container.remove();
       // Exercise 15h
       renderOrderSummary();
-      updateCartQuantity();
+      //updateCartQuantity();
       renderPaymentSummary();
     });
   });
 
-  function updateCartQuantity() {
-    document.querySelector(".js-checkout-header-middle-section").innerHTML =
-      `Checkout (<a class="return-to-home-link js-return-to-home-link" href="amazon.html">${updateCartQuantityCheckout()} items</a>)`;
-  }
-
-  updateCartQuantity();
+  renderCheckoutHeader();
 
   document.querySelectorAll(".js-update-quantity-link").forEach((link) => {
     link.addEventListener("click", () => {
@@ -167,7 +163,7 @@ export function renderOrderSummary() {
       const productId = save.dataset.productId;
       saveFunctionality(productId);
       renderPaymentSummary();
-      updateCartQuantity();
+      renderCheckoutHeader();
     });
   });
 
