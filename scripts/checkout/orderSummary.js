@@ -13,6 +13,7 @@ import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import {
   deliveryOptions,
   getDeliveryOption,
+  calculateDeliveryDate,
 } from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
 import { renderCheckoutHeader } from "./checkoutHeader.js";
@@ -24,13 +25,8 @@ export function renderOrderSummary() {
     const productId = cartItem.productId;
     const matchingProduct = getProduct(productId);
 
-    let dateString;
     const deliveryOption = getDeliveryOption(cartItem);
-    console.log(deliveryOption);
-
-    dateString = dayjs()
-      .add(deliveryOption.deliveryDays, "days")
-      .format("dddd, MMMM D");
+    let dateString = calculateDeliveryDate(deliveryOption);
     cartSummaryHTML += `
         <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date">Delivery date: ${dateString}</div>
@@ -73,9 +69,7 @@ export function renderOrderSummary() {
   function deliveryOptionf(matchingProduct) {
     let html = "";
     deliveryOptions.forEach((deliveryOption) => {
-      const today = dayjs();
-      const deliveryDate = today.add(deliveryOption.deliveryDays, "days");
-      const dateString = deliveryDate.format("dddd, MMMM D");
+      const dateString = calculateDeliveryDate(deliveryOption);
       const priceString =
         deliveryOption.priceCents > 0
           ? `$${formatCurrency(deliveryOption.priceCents)} -`
