@@ -167,6 +167,7 @@ export function renderOrderSummary() {
       const productId = save.dataset.productId;
       saveFunctionality(productId);
       renderPaymentSummary();
+      updateCartQuantity();
     });
   });
 
