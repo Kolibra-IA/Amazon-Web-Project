@@ -170,7 +170,9 @@ export function renderOrderSummary() {
 
         if (getComputedStyle(inputEl).display.trim() !== "none") {
           saveFunctionality(productId);
+          renderOrderSummary();
           renderPaymentSummary();
+          renderCheckoutHeader();
         }
       });
     }
