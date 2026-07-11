@@ -19,7 +19,7 @@ export function calculateCartQuantity() {
   return cartQuantity;
 }
 
-/* export function updateCartQuantity() {
+export function updateCartQuantity() {
   const cartQuantity = calculateCartQuantity();
 
   const cartQuanty = document.querySelector(".js-cart-quantity");
@@ -27,7 +27,7 @@ export function calculateCartQuantity() {
     cartQuanty.innerHTML = cartQuantity;
   }
   return cartQuantity;
-}*/
+}
 
 export function addToCart(productId) {
   let matchingItem;
