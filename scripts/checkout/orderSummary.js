@@ -109,7 +109,7 @@ export function renderOrderSummary() {
     });
   });
 
-  renderCheckoutHeader();
+  //renderCheckoutHeader();
 
   document.querySelectorAll(".js-update-quantity-link").forEach((link) => {
     link.addEventListener("click", () => {
