@@ -4,7 +4,6 @@ import { loadFromStorage, cart } from "../../data/cart.js";
 
 describe("Test suite: renderOrderSummary", () => {
   it("Display the cart", () => {
-    console.log(document.querySelector(".js-test-container").innerHTML);
     document.querySelector(".js-test-container").innerHTML =
       `<div class='js-order-summary'></div>`;
     spyOn(localStorage, "getItem").and.callFake(() => {
@@ -23,5 +22,8 @@ describe("Test suite: renderOrderSummary", () => {
     });
     loadFromStorage();
     renderOrderSummary();
+    expect(cart.length).toEqual(
+      document.querySelectorAll(".js-cart-item-container").length,
+    );
   });
 });
