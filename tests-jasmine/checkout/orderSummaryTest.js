@@ -2,6 +2,9 @@ import { renderOrderSummary } from "../../scripts/checkout/orderSummary.js";
 
 import { loadFromStorage, cart } from "../../data/cart.js";
 
+const productId1 = "e43638ce-6aa0-4b85-b27f-e1d07eb678c6";
+const productId2 = "15b6fc6f-327a-4ec4-896f-486349e85a3d";
+
 describe("Test suite: renderOrderSummary", () => {
   it("Display the cart", () => {
     document.querySelector(".js-test-container").innerHTML =
@@ -25,5 +28,12 @@ describe("Test suite: renderOrderSummary", () => {
     expect(cart.length).toEqual(
       document.querySelectorAll(".js-cart-item-container").length,
     );
+
+    expect(
+      document.querySelector(`.js-product-quantity-${productId1}`).innerText,
+    ).toContain("Quantity: 2");
+    expect(
+      document.querySelector(`.js-product-quantity-${productId2}`).innerText,
+    ).toContain("Quantity: 1");
   });
 });
