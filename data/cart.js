@@ -46,7 +46,6 @@ export function addToCart(productId) {
     matchingItem.quantity++;
   } else {
     cart.push({ quantity: 1, productId, deliveryOptionId: "1" });
-    console.log(cart);
   }
   saveToStorage(cart);
 }
