@@ -13,7 +13,7 @@ describe("Test Suite: Format Currency", () => {
   it("Round up to the nearest cent: Exercise 16a", () => {
     expect(formatCurrency("2000.4")).toEqual("20.00");
   });
-  /*it("Round up to the nearest cent: Exercise 16b", () => {
+  it("Round up to the nearest cent: Exercise 16b", () => {
     expect(formatCurrency("-2000.4")).toEqual("-20.00");
-  });*/
+  });
 });
