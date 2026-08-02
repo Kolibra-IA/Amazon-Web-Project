@@ -27,6 +27,9 @@ describe("Test suite: renderOrderSummary", () => {
     });
     loadFromStorage();
     renderOrderSummary();
+    expect(document.querySelectorAll(".js-cart-item-container").length).toEqual(
+      cart.length,
+    );
   });
   afterEach(() => {
     document.querySelector(".js-test-container").innerHTML = "";
